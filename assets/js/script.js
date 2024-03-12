@@ -34,10 +34,13 @@ createApp({
         }
       ],
       counter: 0,
+      isPlaying: true,
+      isForwards: true
     }
   },
 
   methods:{
+
     nextPrev(dir){
       // operatore ternario per indicare la direzione
       dir ? this.counter++ : this.counter--;
@@ -48,11 +51,18 @@ createApp({
       } else if (this.counter < 0) {
         this.counter = this.images.length -1;
       }
-      
+    },
+
+    autoPlay(){
+      setInterval(()=>{
+        if (this.isPlaying) {
+          this.nextPrev(this.isForwards)
+        }
+      }, 3000)
     }
   },
 
   mounted(){
-
+    this.autoPlay()
   }
 }).mount('#app')
