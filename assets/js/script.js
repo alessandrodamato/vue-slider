@@ -38,7 +38,18 @@ createApp({
   },
 
   methods:{
+    nextPrev(dir){
+      // operatore ternario per indicare la direzione
+      dir ? this.counter++ : this.counter--;
 
+      // controllo sforamento counter
+      if (this.counter === this.images.length) {
+        this.counter = 0;
+      } else if (this.counter < 0) {
+        this.counter = this.images.length -1;
+      }
+      
+    }
   },
 
   mounted(){
